@@ -51,12 +51,7 @@ public class KycIdentityServiceImpl implements KycIdentityService {
         var kycIdentification = kycIdentityRepository.save(new KycIdentification());
         Path path = storeFile(documentRequest.document());
         File file = path.toFile();
-        String infoDoc = getInfoDoc(file);
-        if (infoDoc.contains(phone.getUsers().getFirstName()) ||
-                infoDoc.contains(phone.getUsers().getLastName())
-        ){
-          kycIdentification.setVerifiedDocument(true);
-        }
+
         kycIdentification.setDocument(path.toString());
         kycIdentification.setDocumentType(DocumentType.valueOf(documentRequest.documentType()));
         kycIdentification.setUsers(phone.getUsers());
@@ -72,8 +67,6 @@ public class KycIdentityServiceImpl implements KycIdentityService {
         Path path = storeFile(face);
         File file = path.toFile();
         Path path1 = Path.of(kycIdentification.getDocument());
-        String faceInfo = getInfoDoc(file);
-        kycIdentification.setFace(faceInfo);
         try {
             faceCompareImpl.compareFaces(pathToMultipartFile(path), pathToMultipartFile(path1));
         } catch (IOException e) {
