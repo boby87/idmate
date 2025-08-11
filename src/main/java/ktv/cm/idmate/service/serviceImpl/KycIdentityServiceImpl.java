@@ -172,17 +172,18 @@ public class KycIdentityServiceImpl implements KycIdentityService {
         }
     }
 
-    //extraire les infos de l'imagage grace a l'outil OCR
-    private String getInfoDoc( File image) {  // cherchons a extraire les infos de l'image et retournons une chaine de caractèere
+    private String getInfoDoc(File image) {
+        System.setProperty("jna.library.path", "/app/.apt/usr/lib"); // chemin libs natives sur Heroku
         Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath("src/main/resources/tessdata");
+        tesseract.setDatapath("/app/.apt/usr/share/tessdata"); // chemin des données Tesseract sur Heroku
         tesseract.setLanguage("eng");
         String result = "";
         try {
-            result  = tesseract.doOCR(image);
+            result = tesseract.doOCR(image);
         } catch (TesseractException e) {
             throw new RuntimeException(e);
         }
         return result;
     }
+
 }
