@@ -18,12 +18,10 @@ import java.util.Random;
 public class PhoneImpl implements PhoneMetier {
     private final PhoneRepository phoneRepository;
     private final UserRepository userRepository;
-    private final VerificationMetier verificationMetier;
 
-    public PhoneImpl(PhoneRepository phoneRepository, UserRepository userRepository, VerificationMetier verificationMetier) {
+    public PhoneImpl(PhoneRepository phoneRepository, UserRepository userRepository) {
         this.phoneRepository = phoneRepository;
         this.userRepository = userRepository;
-        this.verificationMetier = verificationMetier;
     }
 
     @Override

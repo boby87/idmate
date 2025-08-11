@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: idmate
+
+  datasource:
+    url: jdbc:postgresql://localhost/registerDB
+    username: postgres
+    password: fokou
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+server:
+  port: 8003
+
+rsa:
+  public-key: classpath:certs/public.pem
+  private-key: classpath:certs/private.pem
+
+
+file:
+  upload:
+    dir: uploads
+
+face.api.key: yAv0-7PR9GTEdCa4JGG5bJAigTlN2EuF
+face.api.secret: y35zY6SGpIJrauzwYCHpiXB_agKvX8BZ
