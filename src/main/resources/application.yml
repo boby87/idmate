@@ -33,3 +33,8 @@ file:
 
 face.api.key: yAv0-7PR9GTEdCa4JGG5bJAigTlN2EuF
 face.api.secret: y35zY6SGpIJrauzwYCHpiXB_agKvX8BZ
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID}
+  auth-token: ${TWILIO_AUTH_TOKEN}
+  phone-number: ${TWILIO_PHONE_NUMBER}

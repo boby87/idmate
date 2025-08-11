@@ -119,6 +119,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+        <finalName>idmate</finalName>
+
+    </build>
 
 </project>

@@ -8,6 +8,7 @@ import ktv.cm.idmate.dto.LegalNameRequest;
 import ktv.cm.idmate.dto.OtpDto;
 import ktv.cm.idmate.dto.PhoneRequest;
 import ktv.cm.idmate.service.metier.PhoneMetier;
+import ktv.cm.idmate.service.metier.SmsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +19,12 @@ import java.util.Random;
 public class PhoneImpl implements PhoneMetier {
     private final PhoneRepository phoneRepository;
     private final UserRepository userRepository;
+    private final SmsService smsService;
 
-    public PhoneImpl(PhoneRepository phoneRepository, UserRepository userRepository) {
+    public PhoneImpl(PhoneRepository phoneRepository, UserRepository userRepository, SmsService smsService) {
         this.phoneRepository = phoneRepository;
         this.userRepository = userRepository;
+        this.smsService = smsService;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class PhoneImpl implements PhoneMetier {
             String otp = String.format("%04d", random.nextInt(10000));
             user.setOtp(otp);
             // Appel à la logique métier de vérification
-           // verificationMetier.sendCode(fullNumber, otp);
+            smsService.sendSms(fullNumber, otp);
             return new OtpDto( phoneRequest.phoneNumber(), otp);
         }else {
             Random random = new Random();
@@ -55,7 +58,7 @@ public class PhoneImpl implements PhoneMetier {
             String otp = String.format("%04d", random.nextInt(10000));
             phone.getUsers().setOtp(otp);
             // Appel à la logique métier de vérification
-           // verificationMetier.sendCode(fullNumber, otp);
+            smsService.sendSms(fullNumber, otp);
             return new OtpDto(phone.getPhoneNumber(), otp);
         }
 
