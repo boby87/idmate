@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("user")
+@RequestMapping("token")
 @Validated
 
 public class UserToken {
@@ -23,7 +23,7 @@ public class UserToken {
     }
 
 
-    @PostMapping("/token")
+    @PostMapping()
     public ResponseEntity<Map<String, String>> jwtToken(@RequestBody LoginDto userLogin) {
         return new ResponseEntity<>(buildJwtService.buildJWT(userLogin), HttpStatus.OK);
     }
