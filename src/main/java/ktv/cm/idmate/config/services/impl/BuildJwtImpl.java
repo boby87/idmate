@@ -67,7 +67,7 @@ public class BuildJwtImpl implements BuildJwtService {
                 .claim("scope", scope)
                 .claim("firstName", users.getFirstName())
                 .claim("lastName", users.getLastName())
-                .claim("phoneNumber", users.getPhoneNumber())
+                .claim("phoneNumber", users.getPhoneNumber().getPhoneNumber())
                 .build();
         return jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSet)).getTokenValue();
     }

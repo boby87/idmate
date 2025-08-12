@@ -24,8 +24,8 @@ public class UserDetailsImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
         var phone = phoneRepository.findByPhoneNumber(phoneNumber);
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(phone.getUsers().getRole().name()));
-        return new User(phone.getPhoneNumber(), phone.getUsers().getPinHash(), authorities);
+        //authorities.add(new SimpleGrantedAuthority(phone.getUsers().getRole().name()));
+        return new User(phone.getPhoneNumber(), phone.getUsers().getKycIdentification().getPing(), authorities);
     }
 
 
