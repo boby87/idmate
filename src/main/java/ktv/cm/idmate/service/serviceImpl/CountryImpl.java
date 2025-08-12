@@ -12,12 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CountryImpl implements CountryMetier {
-    private final UserRepository userRepository;
     private final PhoneRepository phoneRepository;
     private final CountryRepository countryRepository;
 
-    public CountryImpl(UserRepository userRepository, PhoneRepository phoneRepository, CountryRepository countryRepository) {
-        this.userRepository = userRepository;
+    public CountryImpl(PhoneRepository phoneRepository, CountryRepository countryRepository) {
         this.phoneRepository = phoneRepository;
         this.countryRepository = countryRepository;
     }
