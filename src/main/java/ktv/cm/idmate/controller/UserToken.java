@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("token")
+@RequestMapping("/token")
 @Validated
 
 public class UserToken {
