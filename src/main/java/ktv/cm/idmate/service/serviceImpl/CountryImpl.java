@@ -26,9 +26,11 @@ public class CountryImpl implements CountryMetier {
     @Override
     public void saveCountry(CountryRequest countryRequest) {
       var phone=  phoneRepository. findByPhoneNumber(countryRequest.phoneNumber());
-      var country = countryRepository.save(new Country());
-      country.setName(countryRequest.name());
-      country.setUsers(phone.getUsers());
+      if (phone.getUsers() != null && phone.getUsers().getCountry() == null){
+          var country = countryRepository.save(new Country());
+          country.setName(countryRequest.name());
+          country.setUsers(phone.getUsers());
+      }
 
 
 
